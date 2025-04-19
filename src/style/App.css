@@ -1,0 +1,161 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.App {
+  padding: 100px calc(50% - 370px);
+}
+
+.content {
+  background-color: #b2feff;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.navigation {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.navigation__link {
+  font-size: 20px;
+  color: #515151;
+  font-weight: 500;
+}
+.navigation__link_active {
+  text-decoration: underline;
+}
+.navigation__link_active:hover {
+  text-decoration: underline;
+}
+
+.tasks {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.tasks p {
+  color: #8e8e8e;
+  text-align: center;
+}
+.tasks__list {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.tasks__task {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 10px;
+  color: #303030;
+  font-weight: 500;
+}
+.tasks__task label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px 10px 10px 30px;
+  width: 100%;
+}
+.tasks__task button {
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  color: red;
+}
+.tasks__task_completed label {
+  color: #8e8e8e;
+  text-decoration: line-through;
+}
+
+.add-task {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.add-task__text {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  color: #6b6b6b;
+}
+.add-task__submit-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  color: #4c4c4c;
+}/*# sourceMappingURL=App.css.map */
