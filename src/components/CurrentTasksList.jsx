@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTask, deleteTask, toggleTask } from '../slices/tasksSlice';
 
 function CurrentTasksList() {
-    const tasks = useSelector((state) => state.tasks.tasks)
+    const tasks = useSelector((state) => state.tasks)
+    console.log(tasks);
     const dispatch = useDispatch()
     const [text, setText] = useState('');
     const completedTasks = tasks.filter((task) => task.isCompleted === true)

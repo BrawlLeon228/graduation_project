@@ -1,8 +1,31 @@
-import {configureStore} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import tasksReducer from '../slices/tasksSlice'
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+  } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-export default configureStore({
-    reducer: {
-        tasks: tasksReducer
-    },
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['tasks']
+}
+const persistedReducer = persistReducer(persistConfig, tasksReducer)
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
 })
+export const persistor = persistStore(store)
