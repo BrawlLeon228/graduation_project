@@ -1,6 +1,6 @@
 @import './nullstyle/nullstyle'
 .App
-    padding: 100px calc( 50% - 370px )
+    padding: 100px calc( 50% - 400px )
 
 .content
     background-color: #b2feff
@@ -73,6 +73,10 @@
 
     margin-bottom: 20px
 
+    &__date
+        padding: 10px
+        border-radius: 5px
+
     &__text
         padding: 10px
         width: 250px
@@ -87,3 +91,41 @@
         background-color: #f6f6f6
         color: #4c4c4c
 
+.alltasks
+
+.dates
+    display: flex
+    flex-direction: column
+    &__wrapper
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        gap: 10px
+    &__title
+        text-align: center
+        font-size: 16px
+        font-weight: 500
+        color: #565656
+
+        margin-bottom: 20px
+    &__list
+        background-color: #fff
+        padding: 10px
+        border-radius: 5px
+    &__element
+        display: flex
+        justify-content: space-between
+        margin-bottom: 15px
+        padding: 5px
+
+        border-bottom: 1px solid #dddddd
+        button
+            background-color: #fff
+            color: red
+        p
+            color: #565656
+
+.no-tasks
+    color: #353535
+    text-align: center
+    font-weight: 500
+    font-size: 20px

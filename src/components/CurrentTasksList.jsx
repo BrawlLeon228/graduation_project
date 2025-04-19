@@ -3,23 +3,42 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTask, deleteTask, toggleTask } from '../slices/tasksSlice';
 
 function CurrentTasksList() {
-    const tasks = useSelector((state) => state.tasks)
-    console.log(tasks);
-    const dispatch = useDispatch()
-    const [text, setText] = useState('');
-    const completedTasks = tasks.filter((task) => task.isCompleted === true)
-    const activeTasks = tasks.filter((task) => task.isCompleted === false)
+    let currentDate = new Date()
+    let month = currentDate.getMonth() + 1
+    if (parseInt(month) < 10) {
+        month = `0${month}`
+    }
+    let date_ = currentDate.getDate()
+    if (parseInt(date_) < 10) {
+        date_ = `0${date_}`
+    }
+    currentDate = `${currentDate.getFullYear()}-${month}-${date_}`
 
-    // console.log(completedTasks, activeTasks);
+    const tasks = useSelector((state) => state.tasks)
+    const currentTasks = tasks.filter((task) => task.date === currentDate)
+    const dispatch = useDispatch()
+
+    console.log()
+
+    const [text, setText] = useState(localStorage.getItem('text'));
+    const [date, setDate] = useState(currentDate);
+
+    const completedTasks = currentTasks.filter((task) => task.isCompleted === true)
+    const activeTasks = currentTasks.filter((task) => task.isCompleted === false)
+
+
     const handleTextChange = (text) => {
         setText(text)
+        localStorage.setItem('text', text)
     }
 
     const handleAddTask = (e) => {
         e.preventDefault()
         if (text.trim() === '') return
-        dispatch(addTask({ id: Date.now(), title: text, isCompleted: false }))
+        dispatch(addTask({ id: Date.now(), title: text, isCompleted: false, date: date }))
         setText('')
+        setDate(currentDate)
+        localStorage.setItem('text', '')
     }
 
     const handleTaskChange = (e, id) => {
@@ -30,6 +49,23 @@ function CurrentTasksList() {
     const handleTaskDelete = (e, id) => {
         e.preventDefault()
         dispatch(deleteTask(id))
+    }
+    
+    const handleDateChange = (e) => {
+        const newDate = e.target.value.split('-')
+        let flag = true
+        for (let index = 0; index < newDate.length; index++) {
+            if (parseInt(newDate[index]) < currentDate.split('-')[index]) {
+                flag = false
+                break
+            }
+        }
+        if (flag) {
+            setDate(e.target.value)
+        }
+        else {
+            setDate(currentDate)
+        }
     }
 
     return (
@@ -42,6 +78,7 @@ function CurrentTasksList() {
                     onChange={(e) => handleTextChange(e.target.value)}
                     placeholder='Task content'
                 />
+                <input className='add-task__date' type="date" onChange={(e) => handleDateChange(e)} value={date} />
                 <button className="add-task__submit-button" type='submit'>Add Task</button>
             </form>
 

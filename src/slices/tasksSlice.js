@@ -3,10 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 export const tasksSlice = createSlice({
     name: 'tasks',
     initialState: {
-        tasks: [
-            {id: 1, title: 'Task1', isCompleted: false},
-            {id: 2, title: 'Task2', isCompleted: true},
-        ]
+        tasks: []
     },
     reducers: {
         addTask: (state, action) => {
